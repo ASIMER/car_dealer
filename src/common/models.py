@@ -16,18 +16,23 @@ class Car(models.Model):
 
     views = models.PositiveIntegerField(default=0, editable=False)
     slug = models.SlugField(max_length=75)
-    status = models.CharField(max_length=15, choices=STATUS_CHOICES, default=STATUS_PENDING, blank=True)
-    dealer = models.ForeignKey('Dealer', on_delete=models.CASCADE, related_name='cars')
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES,
+                              default=STATUS_PENDING, blank=True)
+    dealer = models.ForeignKey('Dealer', on_delete=models.CASCADE,
+                               related_name='cars')
 
-    model = models.ForeignKey(to='CarModel', on_delete=models.SET_NULL, null=True)
-    extra_title = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('Title second part'))
+    model = models.ForeignKey(to='CarModel', on_delete=models.SET_NULL,
+                              null=True)
+    extra_title = models.CharField(max_length=255, null=True, blank=True,
+                                   verbose_name=_('Title second part'))
 
     # other fields ...
     #
 
     @property
     def auto_title(self):
-        return f'{self.model.brand} {self.extra_title or ""}'  # do not show None
+        return f'{self.model.brand} {self.extra_title or ""}'  # do not show
+        # None
 
     def __str__(self):
         return self.auto_title

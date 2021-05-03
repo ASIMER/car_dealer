@@ -1,5 +1,6 @@
-import factory
 from datetime import date
+
+import factory
 
 from src.apps.cars import models
 from . import dealer_factories

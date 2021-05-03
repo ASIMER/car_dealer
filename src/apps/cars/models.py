@@ -1,33 +1,35 @@
 from django.db import models
+
+
 # Create your models here.
 
 
 class Car(models.Model):
     FUEL_TYPE_CHOICES = [
-        ('p', 'Petrol'),
-        ('gas', 'Gas'),
-        ('dis', 'Diesel'),
-        ('el', 'Electric'),
-        ('hg', 'Hydrogen'),
-    ]
+            ('p', 'Petrol'),
+            ('gas', 'Gas'),
+            ('dis', 'Diesel'),
+            ('el', 'Electric'),
+            ('hg', 'Hydrogen'),
+            ]
     GEAR_CASE_CHOICES = [
-        ('m', 'Mechanic'),
-        ('a', 'Automatic'),
-    ]
+            ('m', 'Mechanic'),
+            ('a', 'Automatic'),
+            ]
 
     STATUS_CHOICES = [
-        ('sol', 'sold'),
-        ('sel', 'selling'),
-        ('arc', 'archived'),
-    ]
+            ('sol', 'sold'),
+            ('sel', 'selling'),
+            ('arc', 'archived'),
+            ]
 
     SEATS_CHOICES = [
-        ('2', 'two'),
-        ('3', 'three'),
-        ('4', 'four'),
-        ('5', 'five'),
-        ('more', 'more then five')
-    ]
+            ('2', 'two'),
+            ('3', 'three'),
+            ('4', 'four'),
+            ('5', 'five'),
+            ('more', 'more then five')
+            ]
     model = models.ForeignKey('Model', on_delete=models.CASCADE, null=True)
     color = models.ForeignKey('Color', on_delete=models.CASCADE, null=True)
     dealer = models.ForeignKey('dealers.Dealer', on_delete=models.CASCADE,
@@ -92,16 +94,17 @@ class Property(models.Model):
 
 class CarProperty(models.Model):
     car_property = models.IntegerField(primary_key=True)
-    property = models.ForeignKey(to=Property, on_delete=models.CASCADE, null=True)
+    property = models.ForeignKey(to=Property, on_delete=models.CASCADE,
+                                 null=True)
     car = models.ForeignKey(to=Car, on_delete=models.CASCADE)
 
 
 class Order(models.Model):
     STATUS_CHOICES = [
-        ('sol', 'sold'),
-        ('sel', 'selling'),
-        ('arc', 'archived'),
-    ]
+            ('sol', 'sold'),
+            ('sel', 'selling'),
+            ('arc', 'archived'),
+            ]
 
     order = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=10)

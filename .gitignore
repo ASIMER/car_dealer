@@ -388,3 +388,4 @@ $RECYCLE.BIN/
 
 # Cython debug symbols
 
+.data
